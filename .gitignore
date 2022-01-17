@@ -1,0 +1,14 @@
+# package directories
+node_modules
+jspm_packages
+/.build/
+/.serverless/
+/_warmup/
+/dist/
+/_optimize/
+.DS_Store
+
+# Serverless directories
+.serverless
+local.sh
+/.idea/
