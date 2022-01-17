@@ -1,0 +1,43 @@
+on:
+  push:
+    branches:
+      - dev
+      - master
+
+name: Deploy Wordle Bot #
+
+jobs:
+  deploy:
+    name: Deploy Wordle Bot #
+    runs-on: ubuntu-latest
+    outputs:
+      branch-name: ${{ steps.branch-name.outputs.branch }}
+      env-config: ${{ steps.env-config.outputs.environment }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set Branch Name
+      id: branch-name
+      run: echo "##[set-output name=branch;]${GITHUB_REF#refs/heads/}"
+
+    - name: Configure AWS credentials
+      id: aws-credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets[format('{0}_AWS_ACCESS_KEY_ID', steps.branch-name.outputs.branch)] }}
+        aws-secret-access-key: ${{ secrets[format('{0}_AWS_SECRET_ACCESS_KEY', steps.branch-name.outputs.branch)] }}
+        aws-region: ${{ secrets[format('{0}_AWS_REGION', steps.branch-name.outputs.branch)] }}
+
+    - name: Configure Node Environment
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install Node Dependencies
+      run: npm ci
+
+    - name: Deploy serverless infrastructure
+      run: npx serverless deploy -s ${STAGE_NAME}
+      env:
+        STAGE_NAME: ${{ secrets[format('{0}_STAGE_NAME', steps.branch-name.outputs.branch)] }}
