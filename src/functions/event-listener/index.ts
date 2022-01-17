@@ -6,7 +6,7 @@ export default {
     {
       http: {
         method: 'post',
-        path: 'wordle/listener/mention',
+        path: 'wordle/listener',
         request: {
 
         }
