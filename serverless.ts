@@ -1,6 +1,7 @@
 import type { AWS } from '@serverless/typescript';
 
-import hello from '@functions/hello';
+import dailyPoster from '@functions/daily-poster';
+import mentionListener from '@functions/mention-listener';
 
 const serverlessConfiguration: AWS = {
   service: 'wordle-bot',
@@ -20,7 +21,7 @@ const serverlessConfiguration: AWS = {
     lambdaHashingVersion: '20201221',
   },
   // import the function via paths
-  functions: { hello },
+  functions: { mentionListener, dailyPoster },
   package: { individually: true },
   custom: {
     esbuild: {
