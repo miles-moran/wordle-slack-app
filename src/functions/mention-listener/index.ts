@@ -1,4 +1,3 @@
-import schema from './schema';
 import { handlerPath } from '@libs/handlerResolver';
 
 export default {
@@ -9,9 +8,7 @@ export default {
         method: 'post',
         path: 'wordle/listener/mention',
         request: {
-          schemas: {
-            'application/json': schema
-          }
+
         }
       }
     }

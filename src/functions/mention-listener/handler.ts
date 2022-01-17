@@ -1,12 +1,11 @@
-import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/apiGateway';
 import { formatJSONResponse } from '@libs/apiGateway';
 import { middyfy } from '@libs/lambda';
+import { APIGatewayEvent } from 'aws-lambda';
 
-import schema from './schema';
 
-const mentionListener: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+const mentionListener = async (event:APIGatewayEvent) => {
   return formatJSONResponse({
-    message: `Hello ${event.body.name}, welcome to the exciting Serverless world!`,
+    message: `Hello ${event.body}, welcome to the exciting Serverless world!`,
     event,
   });
 }
