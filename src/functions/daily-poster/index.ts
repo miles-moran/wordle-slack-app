@@ -8,7 +8,7 @@ export default {
         enabled: true,
         name: 'wordleDailyPoster',
         description: 'Posts the daily Wordle thread with links and scoreboard',
-        rate: ["55 16 ? * * *"]
+        rate: ["0", "14" ,"?", "*", "*", "*"]
       }
     }
   ]

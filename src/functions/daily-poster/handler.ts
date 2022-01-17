@@ -1,10 +1,14 @@
 import { formatJSONResponse } from '@libs/apiGateway';
 import { middyfy } from '@libs/lambda';
+import { ScheduledEvent } from 'aws-lambda';
 
-const dailyPoster = async (event) => {
-  console.log(event)
+const { WebClient } = require('@slack/web-api');
+
+const dailyPoster = async (event:ScheduledEvent) => {
+  const token = process.env.SLACK_TOKEN;
+  const slack = new WebClient(token);
   return formatJSONResponse({
-    message: `Hello ${event.body.name}, welcome to the exciting Serverless world!`,
+    message: `Hello ${event}, welcome to the exciting Serverless world!`,
     event,
   });
 }

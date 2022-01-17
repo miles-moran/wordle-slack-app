@@ -7,7 +7,7 @@ export default {
     {
       http: {
         method: 'post',
-        path: 'wordly/listener/mention',
+        path: 'wordly/listener/init',
         request: {
           schemas: {
             'application/json': schema
