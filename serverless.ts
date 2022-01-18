@@ -21,8 +21,37 @@ const serverlessConfiguration: AWS = {
     },
     lambdaHashingVersion: '20201221',
   },
-  // import the function via paths
-  functions: { eventListener, dailyPoster, initListener },
+  resources: {
+    Resources: {
+      wordleBotTable: {
+        Type: "AWS::DynamoDB::Table",
+        Properties: {
+          TableName: 'test-table',
+          AttributeDefinition: [
+            {
+              AttributeName: 'id',
+              AttributeType: 'S'
+            }
+          ],
+          KeySchema: [
+            {
+              AttributeName: 'id',
+              AttributeType: 'HASH'
+            }
+          ],
+          ProvisionedThroughput: {
+            ReadCapacityUnits: 1,
+            WriteCapacityUnits: 1
+          }
+        }
+      }
+    }
+  },
+  functions: { 
+    eventListener, 
+    dailyPoster, 
+    initListener 
+  },
   package: { individually: true },
   custom: {
     esbuild: {

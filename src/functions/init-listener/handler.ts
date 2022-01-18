@@ -6,7 +6,7 @@ const initListener = async (event:APIGatewayEvent) => {
   console.log(event)
   return formatJSONResponse({
     response_type: "in_channel",
-    text: 'A Wordle leaderboard has been created for this channel'
+    text: 'A Wordle leaderboard has been created for this channel.'
   })
 }
 
