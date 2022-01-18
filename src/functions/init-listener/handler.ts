@@ -7,10 +7,9 @@ const initListener = async (event:APIGatewayEvent) => {
   console.log(event)
   const scoreboardService = new ScoreboardService();
   const params = new URLSearchParams(event.body)
-  console.log(params)
-  const ts = params.get('ts');
-  console.log(ts)
-  const scoreboard = scoreboardService.getScoreboard(ts);
+  const channelId = params.get('channel_id');
+  const scoreboard = scoreboardService.getScoreboard(channelId);
+
   if (scoreboard){
     return formatJSONResponse({
       response_type: "in_channel",
@@ -20,8 +19,9 @@ const initListener = async (event:APIGatewayEvent) => {
 
   const res = scoreboardService.createScoreboard({
     today: {},
-    total: [],
-    ts
+    total: {},
+    ts: null,
+    id: channelId
   })
 
   console.log(res)

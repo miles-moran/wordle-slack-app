@@ -9,6 +9,18 @@ import { ENV_VARS } from "./src/types/env";
 const serverlessConfiguration: AWS = {
   service: 'wordle-bot',
   frameworkVersion: '2',
+  custom: {
+    esbuild: {
+      bundle: true,
+      minify: false,
+      sourcemap: true,
+      exclude: ['aws-sdk'],
+      target: 'node14',
+      define: { 'require.resolve': undefined },
+      platform: 'node',
+      concurrency: 10,
+    },
+  },
   plugins: ['serverless-esbuild'],
   provider: {
     name: 'aws',
@@ -54,19 +66,7 @@ const serverlessConfiguration: AWS = {
     eventListener, 
     dailyPoster
   },
-  package: { individually: true },
-  custom: {
-    esbuild: {
-      bundle: true,
-      minify: false,
-      sourcemap: true,
-      exclude: ['aws-sdk'],
-      target: 'node14',
-      define: { 'require.resolve': undefined },
-      platform: 'node',
-      concurrency: 10,
-    },
-  },
+  package: { individually: true }
 };
 
 module.exports = serverlessConfiguration;
