@@ -4,6 +4,12 @@ import dailyPoster from '@functions/daily-poster';
 import eventListener from '@functions/event-listener';
 import initListener from '@functions/init-listener';
 
+console.log(process.env)
+
+const constum = {
+  
+}
+
 const serverlessConfiguration: AWS = {
   service: 'wordle-bot',
   frameworkVersion: '2',
@@ -23,10 +29,10 @@ const serverlessConfiguration: AWS = {
   },
   resources: {
     Resources: {
-      wordleBotTable: {
+      wordleScoreboardTable: {
         Type: "AWS::DynamoDB::Table",
         Properties: {
-          TableName: 'test-table',
+          TableName: `wordle-scoreboard-table`,
           AttributeDefinitions: [
             {
               AttributeName: 'id',
