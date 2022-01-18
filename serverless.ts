@@ -24,10 +24,10 @@ const serverlessConfiguration: AWS = {
   resources: {
     Resources: {
       wordleBotTable: {
-        Type: "AWS::DynamoDB::table",
+        Type: "AWS::DynamoDB::Table",
         Properties: {
           TableName: 'test-table',
-          AttributeDefinition: [
+          AttributeDefinitions: [
             {
               AttributeName: 'id',
               AttributeType: 'S'
