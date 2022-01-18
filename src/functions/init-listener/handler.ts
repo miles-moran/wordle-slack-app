@@ -9,7 +9,7 @@ const initListener = async (event:APIGatewayEvent) => {
   const params = new URLSearchParams(event.body)
   console.log(params)
   const ts = params.get('ts');
-
+  console.log(ts)
   const scoreboard = scoreboardService.getScoreboard(ts);
   if (scoreboard){
     return formatJSONResponse({

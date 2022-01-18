@@ -4,7 +4,8 @@ import { ENV_VARS } from 'src/types/env';
 export default {
   handler: `${handlerPath(__dirname)}/handler.main`,
   environment: {
-    slackToken: ENV_VARS.worldTable
+    SLACK_TOKEN: ENV_VARS.worldTable,
+    WORDLE_TABLE: ENV_VARS.worldTable
   },
   events: [
     {
