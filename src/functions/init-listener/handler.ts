@@ -3,10 +3,9 @@ import { middyfy } from '@libs/lambda';
 import { APIGatewayEvent } from 'aws-lambda';
 import { ScoreboardService } from "../../services/scoreboard-service"
 const initListener = async (event:APIGatewayEvent) => {
-  const body = JSON.parse(event.body);
-  console.log(body)
+  console.log(event)
   const scoreboardService = new ScoreboardService();
-  const { ts } = body.channel
+  const { ts } = event.body.channel
 
   const scoreboard = scoreboardService.getScoreboard(ts);
   if (scoreboard){
