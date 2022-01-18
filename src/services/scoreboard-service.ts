@@ -8,6 +8,19 @@ export class ScoreboardService {
     constructor() {
       this.dynamoDbClient = new DynamoDB.DocumentClient();
     }
+
+    getScoreboards = async () => {
+      const params = {
+        TableName: this.WORDLE_TABLE,
+        Key: {
+          
+        },
+      }
+  
+      const res = await this.dynamoDbClient.query(params).promise();
+      const vibes = res.Items;
+      return vibes;
+    };
   
     getScoreboard = async (id:string) => {
       const params = {
