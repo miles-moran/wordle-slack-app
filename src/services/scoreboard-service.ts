@@ -7,7 +7,6 @@ export class ScoreboardService {
     private dynamoDbClient: DocumentClient;
     constructor() {
       this.dynamoDbClient = new DynamoDB.DocumentClient();
-      console.log('-', this.WORDLE_TABLE)
     }
   
     getScoreboard = async (id:string) => {
