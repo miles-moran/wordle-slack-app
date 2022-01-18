@@ -36,7 +36,7 @@ const serverlessConfiguration: AWS = {
           KeySchema: [
             {
               AttributeName: 'id',
-              AttributeType: 'HASH'
+              KeyType: 'HASH'
             }
           ],
           ProvisionedThroughput: {
