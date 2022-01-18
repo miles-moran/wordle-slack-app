@@ -6,10 +6,7 @@ export default {
     {
       http: {
         method: 'post',
-        path: 'wordle/listener/init',
-        request: {
-
-        }
+        path: 'wordle/listener/init'
       }
     }
   ]
