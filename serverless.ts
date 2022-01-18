@@ -31,6 +31,7 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
+    stage: '${opt:stage,"local"}',
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
@@ -46,7 +47,7 @@ const serverlessConfiguration: AWS = {
       wordleScoreboardTable: {
         Type: "AWS::DynamoDB::Table",
         Properties: {
-          TableName: ENV_VARS.worldTable,
+          TableName: "${self:custom.wordleTableName.${self:provider.stage}}",
           AttributeDefinitions: [
             {
               AttributeName: 'id',
