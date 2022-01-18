@@ -1,12 +1,14 @@
 import { DynamoDB } from "aws-sdk"
 import { DocumentClient } from "aws-sdk/clients/dynamodb";
+import { ENV_VARS } from "src/types/env";
 import { v4 as uuid } from "uuid";
 
 export class ScoreboardService {
-    private WORDLE_TABLE = process.env.WORDLE_TABLE;
+    private WORDLE_TABLE = ENV_VARS.worldTable;
     private dynamoDbClient: DocumentClient;
     constructor() {
       this.dynamoDbClient = new DynamoDB.DocumentClient();
+      console.log('-', this.WORDLE_TABLE)
     }
   
     getScoreboard = async (id:string) => {
