@@ -2,12 +2,15 @@ import { handlerPath } from '@libs/handlerResolver';
 
 export default {
   handler: `${handlerPath(__dirname)}/handler.main`,
+  environment: {
+    
+  },
   events: [
     {
       http: {
         method: 'post',
         path: 'wordle/listener',
       }
-    }
+    }, 
   ]
 }
