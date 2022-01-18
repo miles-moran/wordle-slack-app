@@ -10,7 +10,9 @@ const ssm = (name:string) => {
 export const { STAGE_NAME } = process.env;
 
 export const ENV_VARS = {
-  local: '',
-  dev: ssm('WORDLE_BOT_SLACK_TOKEN')
+    slackToken: {
+        local: '',
+        dev: ssm('WORDLE_BOT_SLACK_TOKEN')
+    }
 }
 
