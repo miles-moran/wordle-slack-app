@@ -5,7 +5,7 @@ import { ScoreboardService } from "../../services/scoreboard-service"
 const initListener = async (event:APIGatewayEvent) => {
   console.log(event)
   const scoreboardService = new ScoreboardService();
-  const { ts } = event.body.channel
+  
 
   const scoreboard = scoreboardService.getScoreboard(ts);
   if (scoreboard){
@@ -18,7 +18,7 @@ const initListener = async (event:APIGatewayEvent) => {
   const res = scoreboardService.createScoreboard({
     today: {},
     total: [],
-    ts
+    ts: 'a'
   })
 
   console.log(res)
