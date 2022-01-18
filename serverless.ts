@@ -6,9 +6,9 @@ import initListener from '@functions/init-listener';
 
 console.log(process.env)
 
-const constum = {
-  
-}
+// const constum = {
+
+// }
 
 const serverlessConfiguration: AWS = {
   service: 'wordle-bot',
