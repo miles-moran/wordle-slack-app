@@ -10,12 +10,17 @@ const initListener = async (event:APIGatewayEvent) => {
   const channelId = params.get('channel_id');
   const scoreboard = scoreboardService.getScoreboard(channelId);
 
+  console.log('scoreboard', scoreboard)
+
   if (scoreboard){
     return formatJSONResponse({
       response_type: "in_channel",
       text: 'A Wordle leaderboard has already been created.'
     })
   }
+
+  console.log('channelId', channelId)
+
 
   const res = scoreboardService.createScoreboard({
     today: {},
