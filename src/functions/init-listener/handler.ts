@@ -8,7 +8,7 @@ const initListener = async (event:APIGatewayEvent) => {
   const scoreboardService = new ScoreboardService();
   const params = new URLSearchParams(event.body)
   const channelId = params.get('channel_id');
-  const scoreboard = scoreboardService.getScoreboard(channelId);
+  const scoreboard = await scoreboardService.getScoreboard(channelId)
 
   console.log('scoreboard', scoreboard)
 
@@ -22,7 +22,7 @@ const initListener = async (event:APIGatewayEvent) => {
   console.log('channelId', channelId)
 
 
-  const res = scoreboardService.createScoreboard({
+  const res = await scoreboardService.createScoreboard({
     today: {},
     total: {},
     ts: null,
