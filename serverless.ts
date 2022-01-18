@@ -4,8 +4,6 @@ import dailyPoster from '@functions/daily-poster';
 import eventListener from '@functions/event-listener';
 import initListener from '@functions/init-listener';
 
-import { ENV_VARS } from "./src/types/env";
-
 const serverlessConfiguration: AWS = {
   service: 'wordle-bot',
   frameworkVersion: '2',
@@ -19,6 +17,14 @@ const serverlessConfiguration: AWS = {
       define: { 'require.resolve': undefined },
       platform: 'node',
       concurrency: 10,
+    },
+    wordleTableName: {
+      local: '',
+      dev: 'dev-wordle-scoreboard-table'
+    },
+    slackToken: {
+      local: '',
+      dev: '${ssm:DEVELOPMENT.WORDLE_BOT_SLACK_TOKEN}'
     },
   },
   plugins: ['serverless-esbuild'],
@@ -70,3 +76,6 @@ const serverlessConfiguration: AWS = {
 };
 
 module.exports = serverlessConfiguration;
+
+    
+
