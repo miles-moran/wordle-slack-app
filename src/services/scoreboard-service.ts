@@ -3,7 +3,7 @@ import { DocumentClient } from "aws-sdk/clients/dynamodb";
 import { v4 as uuid } from "uuid";
 
 export class ScoreboardService {
-    private WORDLE_TABLE = process.env.worldTable;
+    private WORDLE_TABLE = process.env.WORDLE_TABLE;
     private dynamoDbClient: DocumentClient;
     constructor() {
       this.dynamoDbClient = new DynamoDB.DocumentClient();
