@@ -8,11 +8,21 @@ const initListener = async (event:APIGatewayEvent) => {
   const scoreboardService = new ScoreboardService();
   const { ts } = body.channel
 
+  const scoreboard = scoreboardService.getScoreboard(ts);
+  if (scoreboard){
+    return formatJSONResponse({
+      response_type: "in_channel",
+      text: 'A Wordle leaderboard has already been created.'
+    })
+  }
+
   const res = scoreboardService.createScoreboard({
     today: {},
     total: [],
     ts
   })
+
+  console.log(res)
 
   return formatJSONResponse({
     response_type: "in_channel",

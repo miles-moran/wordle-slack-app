@@ -4,7 +4,10 @@ import dailyPoster from '@functions/daily-poster';
 import eventListener from '@functions/event-listener';
 import initListener from '@functions/init-listener';
 
-import { ENV_VARS, STAGE_NAME } from "./src/types/env";
+import { EnvironmentVariableService } from "./src/types/env";
+
+const ENVIRONMENT = new EnvironmentVariableService();
+const vars = ENVIRONMENT.vars
 
 const serverlessConfiguration: AWS = {
   service: 'wordle-bot',
@@ -28,7 +31,7 @@ const serverlessConfiguration: AWS = {
       wordleScoreboardTable: {
         Type: "AWS::DynamoDB::Table",
         Properties: {
-          TableName: `${STAGE_NAME}-wordle-scoreboard-table`,
+          TableName: ENV_VARS.wordleTable,
           AttributeDefinitions: [
             {
               AttributeName: 'id',
@@ -50,9 +53,9 @@ const serverlessConfiguration: AWS = {
     }
   },
   functions: { 
+    initListener,
     eventListener, 
-    dailyPoster, 
-    initListener 
+    dailyPoster
   },
   package: { individually: true },
   custom: {

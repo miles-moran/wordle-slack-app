@@ -1,18 +1,19 @@
-const ssm = (name:string) => {
-    const PREFIXES = {
-      dev: 'DEVELOPMENT',
-      stage: 'STAGE',
-      prod: 'PRODUCTION'
-    }
-    return "${" + `ssm:${PREFIXES[STAGE_NAME]}.${name}}`
-}
+const STAGE = process.env.STAGE;
 
-export const { STAGE_NAME } = process.env;
-
-export const ENV_VARS = {
+const ALL_ENV_VARS = {
+    wordleTable: {
+        local: '',
+        dev: `${STAGE}-wordle-scoreboard-table`
+    },
     slackToken: {
         local: '',
-        dev: ssm('WORDLE_BOT_SLACK_TOKEN')
-    }
+        dev: '${ssm:DEVELOPMENT.WORDLE_BOT_SLACK_TOKEN}'
+    },
 }
 
+export const ENV_VARS = {
+    worldTable: ALL_ENV_VARS.wordleTable[STAGE],
+    slackToken: ALL_ENV_VARS.slackToken[STAGE],
+}
+
+    
