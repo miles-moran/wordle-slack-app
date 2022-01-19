@@ -13,5 +13,12 @@ export default {
         path: 'wordle/events',
       }
     }, 
-  ]
+  ],
+  slack: {
+    slashCommands: {
+      command: "/init",
+      description: "Creates a leaderboard for the channel",
+      usage_hint: "Create a leaderboard"
+    }
+  }
 }

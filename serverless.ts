@@ -41,7 +41,10 @@ const serverlessConfiguration: AWS = {
     //cron
     dailyPoster,
   },
-  plugins: ['serverless-esbuild'],
+  plugins: { 
+    modules:['serverless-esbuild'],
+    localPath: './sls-plugin'
+  },
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
