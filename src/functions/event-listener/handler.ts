@@ -3,11 +3,10 @@ import { middyfy } from '@libs/lambda';
 import { APIGatewayEvent } from 'aws-lambda';
 
 const eventListener = async (event:APIGatewayEvent) => {
-  const body = JSON.parse(event.body)
-  console.log(body)
+  console.log(event)
   return formatJSONResponse({
     message: `Hello ${event.body}, welcome to the exciting Serverless world!`,
-    challenge: body.challenge,
+    challenge: 'a',
     event,
   });
 }
