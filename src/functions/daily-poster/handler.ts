@@ -12,7 +12,8 @@ const dailyPoster = async (event?:ScheduledEvent | null) => {
   const scoreboards = await scoreboardService.getScoreboards()
   scoreboards.forEach(async scoreboard => {
     const channel = scoreboard.id;
-
+    console.log('LOOPING WTF')
+    console.log(channel)
     const res = await slack.chat.postMessage({
       channel,
       text: WORDLE_HEADER
