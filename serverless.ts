@@ -7,6 +7,7 @@ import slashRefresh from '@functions/slash/refresh';
 import dailyPoster from '@functions/daily-poster';
 
 import eventsMention from '@functions/events/mention';
+import discord from "@functions/events/discord"
 
 const serverlessConfiguration: AWS = {
   service: 'wordle-bot',
@@ -38,6 +39,7 @@ const serverlessConfiguration: AWS = {
     slashRefresh,
     //events
     eventsMention, 
+    discord,
     //cron
     dailyPoster,
   },
