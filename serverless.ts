@@ -42,8 +42,8 @@ const serverlessConfiguration: AWS = {
     dailyPoster,
   },
   plugins: { 
-    modules:['serverless-esbuild'],
-    localPath: './sls-plugin'
+    modules: ['serverless-esbuild'],
+    localPath: '../sls-plugin'
   },
   provider: {
     name: 'aws',
