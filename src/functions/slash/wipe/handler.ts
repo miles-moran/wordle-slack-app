@@ -1,39 +1,32 @@
 import { formatJSONResponse } from '@libs/apiGateway';
 import { middyfy } from '@libs/lambda';
 import { APIGatewayEvent } from 'aws-lambda';
-import { ScoreboardService } from "../../services/scoreboard-service"
+import { ScoreboardService } from "../../../services/scoreboard-service"
 import { URLSearchParams } from "url"
+import { refreshThread } from "../../_shared"
 
-const initListener = async (event:APIGatewayEvent) => {
+const slashWipe = async (event:APIGatewayEvent) => {
   const scoreboardService = new ScoreboardService();
   const params = new URLSearchParams(event.body)
   const channelId = params.get('channel_id');
   const scoreboard = await scoreboardService.getScoreboard(channelId)
 
-  console.log('scoreboard', scoreboard)
-
-  if (scoreboard){
+  if (!scoreboard){
     return formatJSONResponse({
       response_type: "ephemeral",
-      text: 'A Wordle leaderboard has already been created for this channel.'
+      text: 'No Wordle scoreboard exists for this channel'
     })
   }
 
   console.log('channelId', channelId)
 
-  const res = await scoreboardService.createScoreboard({
-    today: {},
-    total: {},
-    ts: null,
-    id: channelId
-  })
-
-  console.log(res)
+  await scoreboardService.editScoreboard(channelId, {}, {})
+  await refreshThread(channelId);
 
   return formatJSONResponse({
     response_type: "in_channel",
-    text: 'A Wordle leaderboard has been created for this channel.'
+    text: 'The Wordle leaderboard has been wiped.'
   })
 }
 
-export const main = middyfy(initListener);
+export const main = middyfy(slashWipe);

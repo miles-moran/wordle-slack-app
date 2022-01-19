@@ -2,9 +2,9 @@ import type { AWS } from '@serverless/typescript';
 
 import dailyPoster from '@functions/daily-poster';
 import eventListener from '@functions/event-listener';
-import initListener from '@functions/init-listener';
-import wipeListener from '@functions/wipe-listener';
-import refreshListener from '@functions/refresh-listener';
+import slashInit from '@functions/slash/init';
+import slashWipe from '@functions/slash/wipe';
+import slashRefresh from '@functions/slash/refresh';
 
 const serverlessConfiguration: AWS = {
   service: 'wordle-bot',
@@ -30,11 +30,11 @@ const serverlessConfiguration: AWS = {
     },
   },
   functions: { 
-    initListener,
+    slashWipe,
+    slashInit,
+    slashRefresh,
     eventListener, 
     dailyPoster,
-    wipeListener,
-    refreshListener
   },
   plugins: ['serverless-esbuild'],
   provider: {

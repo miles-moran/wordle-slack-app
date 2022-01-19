@@ -2,9 +2,9 @@ import { formatJSONResponse } from '@libs/apiGateway';
 import { middyfy } from '@libs/lambda';
 import { APIGatewayEvent } from 'aws-lambda';
 import { URLSearchParams } from "url"
-import { refreshThread } from "../_shared"
+import { refreshThread } from "../../_shared"
 
-const refreshListener = async (event:APIGatewayEvent) => {
+const slashRefresh = async (event:APIGatewayEvent) => {
   const params = new URLSearchParams(event.body)
   const channelId = params.get('channel_id');
   await refreshThread(channelId);
@@ -15,4 +15,4 @@ const refreshListener = async (event:APIGatewayEvent) => {
   })
 }
 
-export const main = middyfy(refreshListener);
+export const main = middyfy(slashRefresh);
