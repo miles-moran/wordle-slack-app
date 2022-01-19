@@ -27,7 +27,7 @@ const discord = async (event: { body: any; }) => {
   }
 
   return formatJSONResponse({
-    test
+    test: 'a'
   });
 }
 
