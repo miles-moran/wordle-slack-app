@@ -7,13 +7,14 @@ import { refreshThread } from "./../_shared"
 const dailyPoster = async (event:ScheduledEvent) => {
   const scoreboardService = new ScoreboardService();
   const scoreboards = await scoreboardService.getScoreboards()
-  await scoreboards.forEach(async scoreboard => {
+  for (const scoreboard of scoreboards) {
     const channel = scoreboard.id;
     console.log('refreshing channel: ', channel)
     const res = await refreshThread(channel)
     console.log(res)
     console.log('done')
-  })
+  }
+
 
   return formatJSONResponse({
     event
