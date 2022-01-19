@@ -14,6 +14,12 @@ export default {
         description: 'Posts the daily Wordle thread with links and scoreboard',
         rate: ["cron(0 6 ? * * *)"]
       }
+    },
+    {
+      http: {
+        method: 'post',
+        path: 'wordle/daily/refresh',
+      }
     }
   ]
 }
