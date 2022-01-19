@@ -20,6 +20,8 @@ export const dailyPoster = async (event?:ScheduledEvent | null) => {
       text: wordleHeader
     })
 
+    console.log(res)
+
     const ts = res.message.ts
 
     await scoreboardService.refreshToday(channel, ts, {})
