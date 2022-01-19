@@ -9,7 +9,9 @@ const dailyPoster = async (event:ScheduledEvent) => {
   const scoreboards = await scoreboardService.getScoreboards()
   scoreboards.forEach(async scoreboard => {
     const channel = scoreboard.id;
-    await refreshThread(channel)
+    console.log('refreshing channel: ', channel)
+    const res = await refreshThread(channel)
+    console.log(res)
   })
 
   return formatJSONResponse({
