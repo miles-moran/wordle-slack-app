@@ -43,7 +43,7 @@ const serverlessConfiguration: AWS = {
   },
   plugins: { 
     modules: ['serverless-esbuild'],
-    localPath: '../sls-plugin'
+    localPath: './serverless-slack-app'
   },
   provider: {
     name: 'aws',
