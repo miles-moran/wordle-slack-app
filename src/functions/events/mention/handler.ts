@@ -4,7 +4,7 @@ import { WebClient } from '@slack/web-api';
 import { ScoreboardService } from 'src/services/scoreboard-service';
 import { WORDLE_HEADER } from 'src/types/constants';
 
-const eventListener = async (event: { body: any; }) => {
+const eventsMention = async (event: { body: any; }) => {
   const body = event.body as any;
   const { text, user, channel } = body.event;
   const token = process.env.SLACK_TOKEN;
@@ -74,4 +74,4 @@ const eventListener = async (event: { body: any; }) => {
   });
 }
 
-export const main = middyfy(eventListener);
+export const main = middyfy(eventsMention);
