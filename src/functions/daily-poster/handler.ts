@@ -8,11 +8,13 @@ import { wordleHeader } from "../../types/constants"
 export const dailyPoster = async (event?:ScheduledEvent | null) => {
   const token = process.env.SLACK_TOKEN;
   const slack = new WebClient(token);
-  
+  console.log('hitting')
   const scoreboardService = new ScoreboardService();
   const scoreboards = await scoreboardService.getScoreboards()
+  console.log(scoreboards)
   scoreboards.forEach(async scoreboard => {
     const channel = scoreboard.id;
+    console.log(channel)
     const res = await slack.chat.postMessage({
       channel,
       text: wordleHeader
