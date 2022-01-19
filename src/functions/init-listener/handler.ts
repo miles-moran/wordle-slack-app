@@ -3,7 +3,7 @@ import { middyfy } from '@libs/lambda';
 import { APIGatewayEvent } from 'aws-lambda';
 import { ScoreboardService } from "../../services/scoreboard-service"
 import { URLSearchParams } from "url"
-import { dailyPoster } from "../daily-poster/handler";
+import { WORDLE_HEADER } from 'src/types/constants';
 const initListener = async (event:APIGatewayEvent) => {
   console.log(event)
   const scoreboardService = new ScoreboardService();
@@ -14,10 +14,9 @@ const initListener = async (event:APIGatewayEvent) => {
   console.log('scoreboard', scoreboard)
 
   if (scoreboard){
-    await dailyPoster()
     return formatJSONResponse({
       response_type: "in_channel",
-      text: 'A Wordle leaderboard has already been created.'
+      text: WORDLE_HEADER
     })
   }
 
