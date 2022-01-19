@@ -3,6 +3,8 @@ import type { AWS } from '@serverless/typescript';
 import dailyPoster from '@functions/daily-poster';
 import eventListener from '@functions/event-listener';
 import initListener from '@functions/init-listener';
+import wipeListener from '@functions/wipe-listener';
+import refreshListener from '@functions/refresh-listener';
 
 const serverlessConfiguration: AWS = {
   service: 'wordle-bot',
@@ -26,6 +28,13 @@ const serverlessConfiguration: AWS = {
       local: '',
       dev: '${ssm:DEVELOPMENT.WORDLE_BOT_SLACK_TOKEN}'
     },
+  },
+  functions: { 
+    initListener,
+    eventListener, 
+    dailyPoster,
+    wipeListener,
+    refreshListener
   },
   plugins: ['serverless-esbuild'],
   provider: {
@@ -74,11 +83,6 @@ const serverlessConfiguration: AWS = {
         }
       }
     }
-  },
-  functions: { 
-    initListener,
-    eventListener, 
-    dailyPoster
   },
   package: { individually: true }
 };
