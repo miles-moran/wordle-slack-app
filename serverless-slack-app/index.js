@@ -10,7 +10,7 @@ class ServerlessPlugin {
     this.commands = {
       welcome: {
         usage: 'Helps you start your first Serverless plugin',
-        lifecycleEvents: ['aws:deploy:finalize:cleanup'],
+        lifecycleEvents: ['aws:deploy:finalize:cleanup', 'invoke:invoke'],
         options: {
           message: {
             usage:
