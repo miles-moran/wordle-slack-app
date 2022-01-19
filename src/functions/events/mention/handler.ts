@@ -16,7 +16,7 @@ const eventsMention = async (event: { body: any; }) => {
     return
   }
   
-  const record = await scoreboardService .getScoreboard(channel)
+  const record = await scoreboardService.getScoreboard(channel)
 
   const {ts, today, total} = record;
 
