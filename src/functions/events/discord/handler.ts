@@ -12,21 +12,22 @@ const discord = async (event: { body: any; }) => {
   const signature = params.get('X-Signature-Ed25519');
   const timestamp = params.get('X-Signature-Timestamp');
 
-  const isVerified = nacl.sign.detached.verify(
-    Buffer.from(timestamp + body),
-    Buffer.from(signature, 'hex'),
-    Buffer.from(PUBLIC_KEY, 'hex')
-  );
-
-  if (!isVerified) {
+  try {
+    const isVerified = nacl.sign.detached.verify(
+      Buffer.from(timestamp + body),
+      Buffer.from(signature, 'hex'),
+      Buffer.from(PUBLIC_KEY, 'hex')
+    );
+    console.log('isVerified', isVerified)
+  } catch (e) {
+    console.log(e)
     return {
       statusCode: 401
     }
   }
 
-  console.log('isVerified', isVerified)
   return formatJSONResponse({
-    challenge: body.challenge
+    test
   });
 }
 
