@@ -12,6 +12,7 @@ const dailyPoster = async (event:ScheduledEvent) => {
     console.log('refreshing channel: ', channel)
     const res = await refreshThread(channel)
     console.log(res)
+    console.log('done')
   })
 
   return formatJSONResponse({

@@ -10,6 +10,7 @@ export const refreshThread = async (channel: string) => {
         channel,
         text: WORDLE_HEADER
       })
+    console.log(res)
   
     const ts = res.message.ts
     console.log('Refreshed thread')
