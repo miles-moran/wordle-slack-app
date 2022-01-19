@@ -7,7 +7,7 @@ import { refreshThread } from "./../_shared"
 const dailyPoster = async (event:ScheduledEvent) => {
   const scoreboardService = new ScoreboardService();
   const scoreboards = await scoreboardService.getScoreboards()
-  scoreboards.forEach(async scoreboard => {
+  await scoreboards.forEach(async scoreboard => {
     const channel = scoreboard.id;
     console.log('refreshing channel: ', channel)
     const res = await refreshThread(channel)
