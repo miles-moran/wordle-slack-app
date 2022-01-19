@@ -10,7 +10,7 @@ class ServerlessPlugin {
     this.commands = {
       welcome: {
         usage: 'Helps you start your first Serverless plugin',
-        lifecycleEvents: ['hello', 'world'],
+        lifecycleEvents: ['aws:deploy:finalize:cleanup'],
         options: {
           message: {
             usage:
@@ -36,6 +36,7 @@ class ServerlessPlugin {
   }
 
   welcomeUser() {
+    console.log(this.serverless)
     this.serverless.cli.log('Your message:');
   }
 
