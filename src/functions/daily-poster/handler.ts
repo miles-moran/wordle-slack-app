@@ -15,7 +15,6 @@ const dailyPoster = async (event:ScheduledEvent) => {
     console.log('done')
   }
 
-
   return formatJSONResponse({
     event
   });
