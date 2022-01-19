@@ -18,6 +18,12 @@ const discord = async (event: { body: any; }) => {
     Buffer.from(PUBLIC_KEY, 'hex')
   );
 
+  if (!isVerified) {
+    return {
+      statusCode: 401
+    }
+  }
+
   console.log('isVerified', isVerified)
   return formatJSONResponse({
     challenge: body.challenge
