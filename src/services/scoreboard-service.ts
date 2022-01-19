@@ -11,13 +11,10 @@ export class ScoreboardService {
 
     getScoreboards = async () => {
       const params = {
-        TableName: this.WORDLE_TABLE,
-        Key: {
-          
-        },
+        TableName: this.WORDLE_TABLE
       }
   
-      const res = await this.dynamoDbClient.query(params).promise();
+      const res = await this.dynamoDbClient.scan(params).promise();
       const vibes = res.Items;
       return vibes;
     };
