@@ -45,7 +45,7 @@ const eventListener = async (event: { body: any; }) => {
       user
     })
     console.log(res3)
-    name = res3.user.profile.display_name
+    name = res3.user.name
     total[user] = {
       total: score,
       attempts: 1,
