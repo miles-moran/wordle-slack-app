@@ -11,16 +11,18 @@ const discord = async (event: any) => {
   console.log(event.headers)
   const signature = event.headers['x-signature-ed25519']
   const timestamp = event.headers['x-signature-timestamp']
-
+  let isVerified
   try {
-    const isVerified = nacl.sign.detached.verify(
+    isVerified = nacl.sign.detached.verify(
       Buffer.from(timestamp + JSON.stringify(body)),
       Buffer.from(signature, 'hex'),
       Buffer.from(PUBLIC_KEY, 'hex')
     );
-    console.log('isVerified', isVerified)
   } catch (e) {
     console.log(e)
+  }
+
+  if (!isVerified){
     return {
       statusCode: 401
     }
