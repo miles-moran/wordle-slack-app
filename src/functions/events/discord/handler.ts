@@ -26,7 +26,7 @@ const discord = async (event: any) => {
   if (!isVerified){
     return {
       statusCode: 401,
-      message: 'invalid request signature'
+      body: 'invalid request signature'
     }
   }
   console.log('HITTING HERE THOUGH')
