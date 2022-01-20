@@ -17,7 +17,7 @@ const discord = async (event: any) => {
       Buffer.from(timestamp + JSON.stringify(body)),
       Buffer.from(signature, 'hex'),
       Buffer.from(PUBLIC_KEY, 'hex')
-    );
+    );  
   } catch (e) {
     console.log(e)
   }
@@ -31,8 +31,8 @@ const discord = async (event: any) => {
   }
   console.log('HITTING HERE THOUGH')
   return formatJSONResponse({
-    test: 'a'
-  });
+    type: 1
+  })
 }
 
 export const main = middyfy(discord);
