@@ -9,8 +9,8 @@ const discord = async (event: any) => {
   console.log(body)
   const PUBLIC_KEY = 'b966846f7daf49b55bf378ee288b927507621ae0b4171a6e9ba5e1a95830f9fb';
   console.log(event.headers)
-  const signature = event.headers['X-Signature-Ed25519']
-  const timestamp = event.headers['X-Signature-Timestamp']
+  const signature = event.headers['x-signature-ed25519']
+  const timestamp = event.headers['x-signature-timestamp']
 
   try {
     const isVerified = nacl.sign.detached.verify(
