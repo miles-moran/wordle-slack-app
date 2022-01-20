@@ -25,7 +25,8 @@ const discord = async (event: any) => {
   console.log('verified: ', isVerified)
   if (!isVerified){
     return {
-      statusCode: 401
+      statusCode: 401,
+      message: 'invalid request signature'
     }
   }
 
