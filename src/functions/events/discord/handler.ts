@@ -29,7 +29,7 @@ const discord = async (event: any) => {
       message: 'invalid request signature'
     }
   }
-
+  console.log('HITTING HERE THOUGH')
   return formatJSONResponse({
     test: 'a'
   });
