@@ -22,6 +22,7 @@ const discord = async (event: any) => {
     console.log(e)
   }
 
+  console.log('verified: ', isVerified)
   if (!isVerified){
     return {
       statusCode: 401
